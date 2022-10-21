@@ -1,0 +1,59 @@
+<apex:page standardStylesheets="true" controller="FQAController" lightningStylesheets="true">
+
+    <style>
+        .myFormStyle {
+            background-color: white;
+            margin: 0;
+        }
+
+    </style>
+
+    <apex:form id="theForm">
+
+        <!-- Button code to back to the portal -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <!-- <button class="btn" onclick="redirect()"><i class="fa fa-home"></i> Home</button> -->
+        <apex:commandButton value="Home"  oncomplete="redirect();" style="background-color: #032d60;
+        border: none;
+        color: white;
+        padding: 12px 16px;
+        font-size: 16px;
+        cursor: pointer;">
+        </apex:commandButton>
+        <script>
+            function redirect() {
+                location.replace('https://walkwaymg--wwm.sandbox.my.site.com/WalkwayP3Portal/');
+            }
+        </script>
+        <!-- ========================================================================== -->
+        <apex:pageBlock id="pb">
+            <h1>FAQ</h1>
+            <div>
+                <p>
+                    <span style="font-weight: bold ; font-size: 22px">Choose your subject : </span>
+                    <!-- <apex:inputField value="{!FQARecord[0].Category__c}" rendered="true">
+                        <apex:actionSupport event="onchange" reRender="theForm"/>
+                    </apex:inputField> -->
+                    <apex:selectList value="{!option}" multiselect="false" label="Select Category" size="1" >
+                        <apex:selectOptions value="{!Soptions}"></apex:selectOptions>
+                        <apex:actionSupport event="onchange" reRender="theForm" />
+                    </apex:selectList>
+                </p>
+            </div>
+            <apex:repeat value="{!FQARecord}" var="item" id="r">
+                <apex:pageBlockSection title="{!item.Question__c}" collapsible="true" rendered="{! (item.Category__c == option) || (option == '') || (option == '--Select--')}">
+                    <apex:pageBlockSectionItem dataStyle="width:70% ; text-align:justify">
+                        <apex:outputField value="{!item.Answer__c}" style="width:100%"></apex:outputField>
+                    </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+            </apex:repeat>
+            <script>
+                for (let i = 0; i < {!FQARecord.size}; i++ ) {
+                    twistSection(document.getElementById("{!$Component.pb}").getElementsByTagName("img")[i]);
+                }
+            </script>
+        </apex:pageBlock>
+    </apex:form>
+
+
+</apex:page>
