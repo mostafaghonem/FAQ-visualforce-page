@@ -3,12 +3,17 @@
 - you can add the frequently Asked Questions and its Answers with Categories to the Custom Object in salesforce to be previewed in the VF.
 - you can Select the required Category from a Picklist in the VF.
 - you can add the VF to the portal.
+<hr style="border:2px solid gray"></hr>
 
-**All Categories**
+
+<h2>All Categories</h2>
+
 ![](Test%20images/all%20Categories.JPG)
 
-**First Category**
+<h2>First Category</h2>
+
 ![](Test%20images/category%20A.JPG)
 
-**Second Category**
+<h2>Second Category</h2>
+
 ![](Test%20images/category%20B.JPG)
